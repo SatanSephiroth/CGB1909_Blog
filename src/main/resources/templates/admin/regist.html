@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>注册页面</title>
+<!-- 引入css文件 -->
+<link rel="stylesheet" th:href="@{/admin/dist/css/regist.css}">
+</head>
+<body>
+	<!-- 头部(header) -->
+	<div id="header">
+		<div id="line1">
+			<span class="line"></span> <span
+				class="wel-reg">欢迎注册</span>
+		</div>
+		<div id="line2">
+			<span> 已有账号？ </span> <span> <a href="/admin/doLogin">请登录</a>
+			</span>
+		</div>
+	</div>
+
+	<!-- 主体(middle) -->
+	<div id="middle">
+		<!-- 表单 -->
+		<form action="#">
+			<table>
+				<tr>
+					<td>
+						<!-- 用户名 --> <input type="text" id="userName" placeholder="用户名" />
+					</td>
+				</tr>
+				<tr>
+					<td class="msg">
+						<!-- 用户名下面的提示消息  --> 最好别用真名，不然做坏事就知道你是谁了，wink~
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<!-- 密码 --> <input type="password" id="password" placeholder="设置密码" />
+					</td>
+				</tr>
+				<tr>
+					<td class="msg">
+						<!-- 密码下面的提示消息  --> 想怎么射就怎么射，嘿嘿嘿
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<!-- 确认密码 --> <input type="password" id="cfgPassword"
+						placeholder="确认密码" />
+					</td>
+				</tr>
+				<tr>
+					<td class="msg alert">
+						<!-- 确认密码下面的提示消息  --> 密码一不一样，自己心里没点B数
+					</td>
+				</tr>
+				
+					<tr>
+					<td>
+						<!-- nick_name --> <input type="text" id="nickName" placeholder="昵称" />
+					</td>
+				</tr>
+			    <tr>
+					<td class="msg">
+						<!-- 密码下面的提示消息  -->死亡如风，常伴吾身！！！哈撒克，面对疾风吧！！！
+					</td>
+				</tr>
+				
+				<tr>	
+			  
+							  				
+					
+			 
+					<td class="protocol" >
+						<input type="checkbox" name="category" value="我已阅读并同意 " checked="checked"/>我已阅读并同意 
+						<a href="#">《用户注册协议》</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" class="btn btn-default btn-add" value="立即注册" id="button">立即注册</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<!-- 快速注册 -->
+		<img src="/admin/dist/img/regist/2wm.jpg" height="200" width="200"/> 
+		
+		
+	</div>
+	
+	<!-- 尾部(footer) -->
+	<div id="footer">
+		<p>
+			关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 营销中心 | 手机博客 | 友情连接 | 销售联盟 | 博客社区 | 博客公益 | English Site<br />
+			Copyright © 20XX - 20XX 
+		</p>
+	</div>
+	
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<script th:src="@{/admin/plugins/jquery/jquery-1.8.3.js}"></script>
+<script th:src="@{/admin/plugins/jquery/jquery-1.8.3.min.js}"></script>
+<script th:src="@{/admin/plugins/jquery/core.js}"></script>
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#button").click(doRegist);
+	});
+	function doRegist() {
+		//1.获取用户提交数据
+		var params = {
+			userName : $("#userName").val(),
+			password : $("#password").val(),
+			cfgPassword : $("#cfgPassword").val(),
+			nickName : $("#nickName").val()
+		}
+		//2.定义请求的url
+		var url = "/admin/doRegist";
+		//3.异步提交请求,执行更新操作
+		$.post(url, params, function(result) {
+			if (result.state == 1) {
+				alert(result.message);
+				location.href = "/";
+			} else {
+				alert(result.message);
+			}
+		})
+	}
+</script>	
+	
+</body>
+</html>
+
+
+
+
+
